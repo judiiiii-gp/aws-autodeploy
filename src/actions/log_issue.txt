@@ -1,0 +1,20 @@
+[2024-03-23 19:14:14][INFO][-1][ACT]: issue Num: 23
+[2024-03-23 19:14:14][INFO][-1][ACT]: Issue Title: EC2 Template - <Title>
+[2024-03-23 19:14:14][INFO][-1][ACT]: Issue Body: ---
+<!--
+This template is used to configure and deploy an EC2 instance.
+An example template with the minimum fields is shown below.
+:ec2_name: "ec2_mario"
+:email: "example@gmail.com"
+:instance_type: "t2.micro"
+-->
+:ec2_name: 
+:email: 
+:instance_type: 
+...
+[2024-03-23 19:14:14][INFO][-1][ACT]: Comments: 1
+[2024-03-23 19:14:14][INFO][-1][ACT]: Labels: [{"id"=>6716527917, "node_id"=>"LA_kwDOLim20s8AAAABkFYVLQ", "url"=>"https://api.github.com/repos/Kattorzeh/aws-autodeploy/labels/action-validate", "name"=>"action-validate", "color"=>"A020F0", "default"=>false, "description"=>""}, {"id"=>6716533837, "node_id"=>"LA_kwDOLim20s8AAAABkFYsTQ", "url"=>"https://api.github.com/repos/Kattorzeh/aws-autodeploy/labels/state-pending", "name"=>"state-pending", "color"=>"FEF2C0", "default"=>false, "description"=>""}]
+[2024-03-23 19:14:14][INFO][-1][ACT]: State: open
+[2024-03-23 19:14:14][INFO][-1][ACT]: Creation Date: 2024-03-23T19:14:01Z
+[2024-03-23 19:14:14][INFO][-1][ACT]: Last Updated Date: 2024-03-23T19:14:10Z
+[2024-03-23 19:14:14][DEBUG][-1][MAIN]: Reporting action 'action-validate'
