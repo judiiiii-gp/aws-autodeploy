@@ -1,0 +1,45 @@
+name: aws-autodeploy-workflow
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  aws-autodeploy-workflow:
+    if: startsWith(github.event.label.name, 'action-')
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      # Setup terraform (only needed for action-deploy and action-delete)
+      - name: Terraform
+        uses: hashicorp/setup-terraform@v3
+        if: github.event.label.name == 'action-deploy' || github.event.label.name == 'action-delete' || github.event.label.name == 'action-recover'
+      
+      # Setup Ruby
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+
+      # Setup gems
+      - name: Install Ruby dependencies
+        run: |
+          gem install aws-sdk-ec2 octokit open3 git
+
+      # run aws_autodeploy.rb
+      - name: Run main action
+        id: run-aws-autodeploy-action
+        working-directory: ./src
+        if: github.event.label.name == 'action-validate' || github.event.label.name == 'action-deploy' || github.event.label.name == 'action-update' || github.event.label.name == 'action-delete' || github.event.label.name == 'action-purge' || github.event.label.name == 'action-recover'
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+          REGION: ${{ secrets.REGION }}
+        run: |
+          ruby aws_autodeploy.rb ${{ github.event.label.name}} ${{ github.event.issue.number }} "ec2"
